@@ -9,7 +9,7 @@ Card này đi kèm mỗi báo cáo và được dùng lại ở Day 10.
 - **Kết quả baseline vs PR (v1):** `fixed` merge; `seeded_regression` BLOCK — `pass_rate` Δ −0.271 CI [−0.500, −0.057]
 - **Judge:** tone_ok κ=0.757, P=0.857, R=0.8 → dùng được; helpful κ=0.375, R=0.3 → **loại** (fn=21, bỏ lọt sai tiền)
 - **Trace case:** `docs/trace_case.md` — FM-03 `seeded_regression C-002@11`, bước sai #3 `model_override`; test `test_lab9_trace_case.py`
-- **Gate owner:** thành viên phụ trách eval (Day 9); exit 1 → không merge
+- **Gate owner:** Phạm Trung Kiên (Lab 9); exit 1 → không merge
 - **Phạm vi pilot:** hoàn tiền/ship LogiX-VN trên public+adversarial claims, MockLLM
 - **Giới hạn / bằng chứng còn thiếu:** MockLLM, 14/28 item, judge replay; không đo trên người dùng thật; bug chỉ 1/3 seed không phát hiện ổn định với 5 seed
 - **Khi nào tăng eval-set version:** thêm attack/slice mới, đổi định nghĩa nhãn, hoặc mở rộng cơ chế FM (vd. FM-09)

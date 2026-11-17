@@ -47,7 +47,7 @@ Quy tắc: tiền và phê duyệt luôn chấm bằng code. Judge chỉ dùng c
 ## 5. Cổng release
 - Lệnh: `python -m lab9.gate --pr reports/eval_<shape>.json --baseline reports/baseline_v1.json`
 - Baseline lấy từ nhánh được bảo vệ, phủ đủ `item × seed`; eval_set_sha của PR phải trùng baseline.
-- Gate exit 1 → **không merge**. Người xử lý: **Eval owner** (vai ledger + evaluation — Lý Thanh Lâm / thành viên phụ trách Day 9). Ngoại lệ (waiver) cần: Product + Eval owner duyệt, ghi lý do vào PR.
+- Gate exit 1 → **không merge**. Người xử lý: **Eval owner** (Phạm Trung Kiên / thành viên phụ trách Lab 9). Ngoại lệ (waiver) cần: Product + Eval owner duyệt, ghi lý do vào PR.
 - CI: job `eval-gate` / `eval-gate-v2` trên PR `starter/d09` → `main`.
 
 ## 6. Bằng chứng còn thiếu / rủi ro mở
@@ -66,4 +66,4 @@ Quy tắc: tiền và phê duyệt luôn chấm bằng code. Judge chỉ dùng c
 | Vai trò | Tên | Ngày |
 |---|---|---|
 | Product | VinCon (nhóm) | 2026-11-17 |
-| Eval owner (giữ gate) | Lý Thanh Lâm / phụ trách Lab 9 | 2026-11-17 |
+| Eval owner (giữ gate) | Phạm Trung Kiên / phụ trách Lab 9 | 2026-11-17 |
