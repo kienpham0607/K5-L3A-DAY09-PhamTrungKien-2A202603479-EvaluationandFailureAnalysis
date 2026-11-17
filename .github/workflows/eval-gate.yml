@@ -29,7 +29,8 @@ jobs:
         with: {persist-credentials: false}
       # setup-uv publishes only full tags (no @v10); pin the SHA.
       - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
-        with: {python-version: "3.13", activate-environment: true, enable-cache: true, cache-dependency-glob: "src/requirements*.txt"}
+        # Pin 3.12 to match committed baseline_v1.json (manifest.python 3.12.x).
+        with: {python-version: "3.12", activate-environment: true, enable-cache: true, cache-dependency-glob: "src/requirements*.txt"}
       - run: uv pip install -r requirements.txt -r requirements-lab9.txt
       - run: python -m lab9.smoke
       - run: python -m pytest -q -m student -o addopts= -k "lab9 and not advanced"
@@ -74,7 +75,7 @@ jobs:
         run: "test -f reports/baseline_v2.json && echo v2=1 >> \"$GITHUB_OUTPUT\" || echo skip, no baseline_v2"
       - if: steps.has.outputs.v2
         uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
-        with: {python-version: "3.13", activate-environment: true, enable-cache: true, cache-dependency-glob: "src/requirements*.txt"}
+        with: {python-version: "3.12", activate-environment: true, enable-cache: true, cache-dependency-glob: "src/requirements*.txt"}
       - if: steps.has.outputs.v2
         run: uv pip install -r requirements.txt -r requirements-lab9.txt
       - if: steps.has.outputs.v2
