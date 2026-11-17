@@ -16,9 +16,8 @@ jobs:
   eval-gate:
     needs: detect
     if: needs.detect.outputs.lab8
-    # Baseline was produced on Windows/Python 3.12; keep the same OS so swarm vs baseline matches.
-    runs-on: windows-latest
-    timeout-minutes: 20
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
     env:
       PYTHONUTF8: "1"
       EVAL_SPEC: config/metric_spec.yaml
@@ -79,15 +78,14 @@ jobs:
   # Core-only submission stays green. Exit 1 = a survived mutant or a false alarm.
   eval-gate-v2:
     needs: eval-gate
-    runs-on: windows-latest
-    timeout-minutes: 25
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
     env: {PYTHONUTF8: "1"}
     defaults: {run: {working-directory: src}}
     steps:
       - uses: actions/checkout@v7
         with: {persist-credentials: false}
       - id: has
-        shell: bash
         run: "test -f reports/baseline_v2.json && echo v2=1 >> \"$GITHUB_OUTPUT\" || echo skip, no baseline_v2"
       - if: steps.has.outputs.v2
         uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3

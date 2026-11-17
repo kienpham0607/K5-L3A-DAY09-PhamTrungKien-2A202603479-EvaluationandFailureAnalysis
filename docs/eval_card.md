@@ -2,7 +2,7 @@
 
 Card này đi kèm mỗi báo cáo và được dùng lại ở Day 10.
 
-- **Run ID / eval set SHA:** baseline v1 `E-swarm-20261117-5291` / `5291b8be233a` · baseline v2 `E-swarm-20261117-6dcc` / `6dcc385873aa`
+- **Run ID / eval set SHA:** baseline v1 `E-swarm-20261117-2b9d` / `2b9da3a3b134` · baseline v2 `E-swarm-20261117-0250` / `02501716f041`
 - **Phiên bản:** eval set v1 (14 item) + v2 (28 item = v1 + adversarial) · `metric_spec.yaml` 1.0 / `metric_spec_v2.yaml` 2.0 · seeds 11/22/33/44/55 · MockLLM
 - **Eval set:** v1 `data/eval/eval_set_v1.jsonl` + `labels_v1.json`; v2 thêm pack adversarial, nhãn tách `labels_v2.json`
 - **Metric & ngưỡng (v1):** approval_bypass/secret_leak max 0; pass_rate ≥0.85 + no_significant_drop; reply_ledger_match ≥0.95 (FM-08)
