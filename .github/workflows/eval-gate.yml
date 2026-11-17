@@ -35,10 +35,24 @@ jobs:
       - run: python -m lab9.smoke
       - run: python -m pytest -q -m student -o addopts= -k "lab9 and not advanced"
       - run: python -m lab9.evalset --check
-      - name: Evaluate and gate the PR swarm
+      - name: Evaluate the PR swarm
         shell: bash
         run: |
+          set -euxo pipefail
+          ls -la "$EVAL_SPEC" "$EVAL_BASELINE"
           python -m lab9.eval --shape swarm --spec "$EVAL_SPEC" --out reports/eval_pr.json
+      - name: Gate the PR swarm against baseline
+        shell: bash
+        run: |
+          set -euxo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          pr = json.loads(Path("reports/eval_pr.json").read_text(encoding="utf-8"))
+          base = json.loads(Path("reports/baseline_v1.json").read_text(encoding="utf-8"))
+          print("pr", pr["run_id"], pr["manifest"].get("python"), pr["metrics"])
+          print("base", base["run_id"], base["manifest"].get("python"), base["metrics"])
+          PY
           python -m lab9.gate --pr reports/eval_pr.json --baseline "$EVAL_BASELINE" --spec "$EVAL_SPEC"
       - name: Check the committed baseline and the M3 metric
         run: python -m lab9.ci_check --pr reports/eval_pr.json --baseline "$EVAL_BASELINE" --spec "$EVAL_SPEC"
