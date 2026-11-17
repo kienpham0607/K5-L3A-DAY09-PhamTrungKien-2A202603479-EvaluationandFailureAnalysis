@@ -3,3 +3,6 @@
 *.sqlite binary
 *.png binary
 *.pdf binary
+
+.github/workflows/* text eol=lf
+src/data/eval/** text eol=lf
